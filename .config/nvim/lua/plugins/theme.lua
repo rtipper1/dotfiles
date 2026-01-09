@@ -1,1 +1,0 @@
-/home/rtippery/.config/omarchy/current/theme/neovim.lua
