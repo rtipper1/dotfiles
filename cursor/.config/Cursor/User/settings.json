@@ -1,0 +1,78 @@
+{
+  // SSH Configuration
+  "cursor.composer.supportsTodos": false,
+  "workbench.colorTheme": "Gruvbox Material Dark",
+  "remote.SSH.remotePlatform": {
+    "rtipper@eceprog3.ecn.purdue.edu": "linux",
+    "rtipper@eceprog2.ecn.purdue.edu": "linux"
+  },
+  
+  // Workbench Settings -----------------------------
+
+  // Workbecnh Sidebar -> right
+  "workbench.sidebar.location": "right",
+
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontSize": 14,
+  "editor.fontWeight": "normal",
+  "editor.fontWeightBold": "bold",
+  "editor.fontWeightLight": "light",
+  "editor.fontWeightMedium": "medium",
+  "editor.fontWeightSemiBold": "semi-bold",
+  "editor.fontWeightThin": "thin",
+  "editor.fontWeightUltraBold": "ultra-bold",
+
+  // Workbench status bar
+  "workbench.statusBar.visible": false,
+
+  // Minimap
+  "editor.minimap.enabled": false,
+
+  // Scrollbars
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.overviewRulerBorder": false,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.horizontal": "hidden",
+  "color-highlight.markRuler": false,
+  "workbench.activityBar.location": "hidden",
+
+  // Breadcrumbs
+  "breadcrumbs.enabled": false,
+
+  // File Explorer Settings -----------------------------
+
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.tree.renderIndentGuides": "none",
+  //"explorer.openEditors.visible": "hidden",
+  "explorer.decorations.colors": false,
+  
+  // Hide outline and timeline views in explorer
+  "outline.enabled": false,
+  "timeline.enabled": false,
+
+  // Editor Settings ------------------------------------
+  "editor.bracketPairColorization.enabled": false,
+  "editor.guides.highlightActiveBracketPair": false,
+  "editor.guides.bracketPairsHorizontal": false,
+
+  "editor.guides.indentation": false,
+  
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoother": "on",
+
+  "editor.renderLineHighlight": "none",
+
+  "editor.glyphMargin": false,
+  "editor.showFoldingControls": "never",
+
+  "window.menuBarVisibility": "hidden",
+
+  "workbench.layoutControl.enabled": false,
+
+  "window.title": " ",
+  "explorer.autoOpenDroppedFile": false,
+  "explorer.compactFolders": false,
+  "explorer.confirmDragAndDrop": false,
+  "workbench.sideBar.location": "right",
+  "git.confirmSync": false,
+}
