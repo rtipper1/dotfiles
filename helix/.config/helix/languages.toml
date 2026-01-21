@@ -1,0 +1,24 @@
+# ~/.config/helix/languages.toml
+
+# Python
+[[language]]
+name = "python"
+language-servers = ["pylsp"]
+auto-format = true
+
+[language.formatter]
+command = "black"
+args = ["-", "-q"]
+
+[language-server.pylsp.config.pylsp.plugins]
+# Enable/disable pylsp plugins as needed
+pylsp_mypy.enabled = true
+rope_autoimport.enabled = true
+
+# Markdown
+[[language]]
+name = "markdown"
+file-types = ["md"]
+
+[[language.language-server]]
+name = "marksman"
