@@ -75,4 +75,6 @@
   "explorer.confirmDragAndDrop": false,
   "workbench.sideBar.location": "right",
   "git.confirmSync": false,
+  "kotlin.languageServer.enabled": false,
+  "kotlin.debugAdapter.enabled": false,
 }
