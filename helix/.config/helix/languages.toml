@@ -20,5 +20,3 @@ rope_autoimport.enabled = true
 name = "markdown"
 file-types = ["md"]
 
-[[language.language-server]]
-name = "marksman"
