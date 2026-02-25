@@ -19,10 +19,7 @@ packadd("which-key.nvim")
 packadd("nvim-web-devicons")
 packadd("lualine.nvim")
 
-local ok = pcall(vim.cmd.colorscheme, "gruvbox")
-if not ok then
-	vim.notify("colorscheme 'gruvbox' not available; using default", vim.log.levels.WARN)
-end
+require("config.theme").setup()
 
 require("plugins.treesitter")
 require("plugins.nvim-tree")
