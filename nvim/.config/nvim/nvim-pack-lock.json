@@ -29,6 +29,14 @@
       "rev": "577d2dcb558efce1518c45a76345e01bf346c8e8",
       "src": "https://www.github.com/echasnovski/mini.nvim"
     },
+    "noice.nvim": {
+      "rev": "7bfd942445fb63089b59f97ca487d605e715f155",
+      "src": "https://github.com/folke/noice.nvim"
+    },
+    "nui.nvim": {
+      "rev": "de740991c12411b663994b2860f1a4fd0937c130",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
     "nvim-lspconfig": {
       "rev": "ab5139c99df944479e5a26495a37840fcbb1d512",
       "src": "https://www.github.com/neovim/nvim-lspconfig"
@@ -40,6 +48,10 @@
     "nvim-treesitter": {
       "rev": "a8845121f063458ef23df86e73f16bbee71ec67b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
     }
   }
 }
