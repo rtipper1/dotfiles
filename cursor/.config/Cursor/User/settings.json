@@ -1,7 +1,7 @@
 {
   // SSH Configuration
   "cursor.composer.supportsTodos": false,
-  "workbench.colorTheme": "Gruvbox Material Dark",
+  "workbench.colorTheme": "Gruvbox Dark Medium",
   "remote.SSH.remotePlatform": {
     "rtipper@eceprog3.ecn.purdue.edu": "linux",
     "rtipper@eceprog2.ecn.purdue.edu": "linux"

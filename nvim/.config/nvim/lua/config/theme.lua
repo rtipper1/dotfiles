@@ -3,7 +3,7 @@ local M = {}
 local uv = vim.uv or vim.loop
 local theme_name_file = vim.fn.expand("~/.config/omarchy/current/theme.name")
 local theme_neovim_file = vim.fn.expand("~/.config/omarchy/current/theme/neovim.lua")
-local fallback_theme = "gruvbox"
+local fallback_theme = "gruvbox-material"
 
 local active_theme = nil
 local warned_theme = nil
@@ -12,6 +12,7 @@ local attempted_plugin_installs = {}
 local repo_to_pack_name = {
 	["catppuccin/nvim"] = "catppuccin",
 	["rose-pine/neovim"] = "rose-pine",
+	["f4z3r/gruvbox-material.nvim"] = "gruvbox-material",
 }
 
 local function read_file(path)
@@ -133,14 +134,25 @@ local function load_theme_plugin(pack_name, repo)
 	end
 end
 
+local function map_theme_name(theme)
+	if theme == "gruvbox" then
+		return "gruvbox-material"
+	end
+
+	return theme
+end
+
 local function apply_theme(theme)
 	if not theme or theme == active_theme then
 		return
 	end
 
-	local ok = pcall(vim.cmd.colorscheme, theme)
+	local requested = theme
+	local actual = map_theme_name(theme)
+
+	local ok = pcall(vim.cmd.colorscheme, actual)
 	if ok then
-		active_theme = theme
+		active_theme = requested
 		warned_theme = nil
 		return
 	end

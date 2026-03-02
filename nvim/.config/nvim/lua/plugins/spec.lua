@@ -16,7 +16,10 @@ return {
 		version = vim.version.range("1.*"),
 	},
 	"https://github.com/L3MON4D3/LuaSnip",
-	"https://github.com/ellisonleao/gruvbox.nvim",
+	{
+		src = "https://github.com/f4z3r/gruvbox-material.nvim",
+		name = "gruvbox-material",
+	},
 	"https://github.com/ribru17/bamboo.nvim",
 	"https://github.com/bjarneo/aether.nvim",
 	"https://github.com/bjarneo/ethereal.nvim",

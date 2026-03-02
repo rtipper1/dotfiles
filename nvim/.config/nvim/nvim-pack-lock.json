@@ -49,6 +49,10 @@
       "rev": "9f3c6dd7868bcc116e9c1c1929ce063b978fa519",
       "src": "https://www.github.com/lewis6991/gitsigns.nvim"
     },
+    "gruvbox-material": {
+      "rev": "b5bb00910e98f49cc9311d19e03bc17ae8531c12",
+      "src": "https://github.com/f4z3r/gruvbox-material.nvim"
+    },
     "gruvbox.nvim": {
       "rev": "561126520034a1dac2f78ab063db025d12555998",
       "src": "https://github.com/ellisonleao/gruvbox.nvim"
