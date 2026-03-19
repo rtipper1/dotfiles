@@ -1,32 +1,16 @@
 {
-  // SSH Configuration
-  "cursor.composer.supportsTodos": false,
-  "workbench.colorTheme": "Gruvbox Dark Medium",
-  "remote.SSH.remotePlatform": {
-    "rtipper@eceprog3.ecn.purdue.edu": "linux",
-    "rtipper@eceprog2.ecn.purdue.edu": "linux"
-  },
   
-  // Workbench Settings -----------------------------
-
-  // Workbecnh Sidebar -> right
-  "workbench.sidebar.location": "right",
-
-  "editor.fontFamily": "JetBrains Mono",
+  "workbench.colorTheme": "Gruvbox Material Dark",
+  "editor.fontFamily": "CaskaydiaMono Nerd Font Mono",
   "editor.fontSize": 14,
   "editor.fontWeight": "normal",
-  "editor.fontWeightBold": "bold",
-  "editor.fontWeightLight": "light",
-  "editor.fontWeightMedium": "medium",
-  "editor.fontWeightSemiBold": "semi-bold",
-  "editor.fontWeightThin": "thin",
-  "editor.fontWeightUltraBold": "ultra-bold",
 
   // Workbench status bar
-  "workbench.statusBar.visible": false,
+  "workbench.statusBar.visible": true,
 
   // Minimap
   "editor.minimap.enabled": false,
+  "editor.hover.enabled": false,
 
   // Scrollbars
   "editor.hideCursorInOverviewRuler": true,
@@ -40,15 +24,10 @@
   "breadcrumbs.enabled": false,
 
   // File Explorer Settings -----------------------------
-
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.tree.renderIndentGuides": "none",
-  //"explorer.openEditors.visible": "hidden",
+  "workbench.tree.renderIndentGuides": "none", 
   "explorer.decorations.colors": false,
   
-  // Hide outline and timeline views in explorer
-  "outline.enabled": false,
-  "timeline.enabled": false,
 
   // Editor Settings ------------------------------------
   "editor.bracketPairColorization.enabled": false,
@@ -56,9 +35,9 @@
   "editor.guides.bracketPairsHorizontal": false,
 
   "editor.guides.indentation": false,
+  "editor.lineHeight": 17,
   
   "editor.cursorBlinking": "phase",
-  "editor.cursorSmoother": "on",
 
   "editor.renderLineHighlight": "none",
 
@@ -73,8 +52,6 @@
   "explorer.autoOpenDroppedFile": false,
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
-  "workbench.sideBar.location": "right",
+  "workbench.sideBar.location": "left",
   "git.confirmSync": false,
-  "kotlin.languageServer.enabled": false,
-  "kotlin.debugAdapter.enabled": false,
 }
