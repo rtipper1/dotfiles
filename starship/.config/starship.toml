@@ -1,38 +1,150 @@
-add_newline = true
-command_timeout = 200
+"$schema" = 'https://starship.rs/config-schema.json'
 
-format = "$directory$python$git_branch$git_status$character"
+format = """
+$directory\
+$git_branch\
+$git_status\
+$c\
+$cpp\
+$rust\
+$golang\
+$nodejs\
+$bun\
+$php\
+$java\
+$kotlin\
+$haskell\
+$python\
+$docker_context\
+$conda\
+$pixi\
+$character"""
 
-[character]
-error_symbol = "[✗](bold cyan)"
-success_symbol = "[❯](bold cyan)"
+palette = "gruvbox_material"
+
+[palettes.gruvbox_material]
+fg         = "#D4BE98"
+bg0        = "#282828"
+
+red        = "#EA6962"
+orange     = "#E78A4E"
+yellow     = "#D8A657"
+green      = "#A9B665"
+aqua       = "#89B482"
+blue       = "#7DAEA3"
+purple     = "#D3869B"
+grey       = "#928374"
+
+# ───────────────── DIRECTORY ─────────────────
 
 [directory]
+style = "fg:aqua"
+format = "[$path]($style) "
 truncation_length = 10
 truncation_symbol = "…/"
-repo_root_style = "bold cyan"
-repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+
+[directory.substitutions]
+"Documents" = "󰈙"
+"Downloads" = ""
+"Music" = "󰝚"
+"Pictures" = ""
+"Developer" = "󰲋"
+
+# ───────────────── GIT ─────────────────
+
+# branch icon = red
+# branch name = primary blue
 
 [git_branch]
-format = "[$branch]($style) "
-style = "italic red"
+symbol = " "
+style = "fg:red"
+format = "[[](fg:red) $branch]($style) "
 
 [git_status]
-format     = '[$all_status]($style)'
-style      = "red"
-ahead      = "⇡${count} "
-diverged   = "⇕⇡${ahead_count}⇣${behind_count} "
-behind     = "⇣${count} "
-conflicted = " "
-up_to_date = " "
-untracked  = "? "
-modified   = " "
-stashed    = ""
-staged     = ""
-renamed    = ""
-deleted    = ""
+style = "fg:red"
+format = '([$all_status]($style) )'
+modified = "●"
+stashed = ""
+staged = ""
+renamed = ""
+deleted = ""
+# ───────────────── LANGUAGES ─────────────────
+
+[nodejs]
+symbol = ""
+style = "fg:green"
+format = "[$symbol]($style) "
+
+[bun]
+symbol = ""
+style = "fg:green"
+format = "[$symbol]($style) "
+
+[c]
+symbol = ""
+style = "fg:blue"
+format = "[$symbol]($style) "
+
+[cpp]
+symbol = ""
+style = "fg:blue"
+format = "[$symbol]($style) "
+
+[rust]
+symbol = ""
+style = "fg:orange"
+format = "[$symbol]($style) "
+
+[golang]
+symbol = ""
+style = "fg:aqua"
+format = "[$symbol]($style) "
+
+[php]
+symbol = ""
+style = "fg:purple"
+format = "[$symbol]($style) "
+
+[java]
+symbol = ""
+style = "fg:red"
+format = "[$symbol]($style) "
+
+[kotlin]
+symbol = ""
+style = "fg:purple"
+format = "[$symbol]($style) "
+
+[haskell]
+symbol = ""
+style = "fg:purple"
+format = "[$symbol]($style) "
 
 [python]
-symbol = " "
-style = "bold yellow"
-format = "[$symbol($version) $virtualenv]($style) "
+symbol = ""
+style = "fg:yellow"
+format = "[$symbol]($style) "
+
+# ───────────────── CONTAINERS / ENVS ─────────────────
+
+[docker_context]
+symbol = ""
+style = "fg:blue"
+format = "[$symbol]($style) "
+
+[conda]
+symbol = ""
+style = "fg:green"
+format = "[$symbol( $environment)]($style) "
+
+[pixi]
+symbol = "󰏗"
+style = "fg:aqua"
+format = "[$symbol( $environment)]($style) "
+
+# ───────────────── PROMPT ─────────────────
+
+[character]
+success_symbol = "[❯](bold fg:aqua)"
+error_symbol = "[❯](bold fg:red)"
+vimcmd_symbol = "[❮](bold fg:yellow)"
