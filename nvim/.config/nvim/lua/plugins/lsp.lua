@@ -1,10 +1,47 @@
-require("mason").setup({})
+-- LSP setup for Neovim 0.12's native vim.lsp API.
+-- Server binaries are installed via Nix (see notes below), NOT mason, because
+-- mason ships generic-linux prebuilt binaries that can't run on NixOS.
+-- nvim-lspconfig ships the server definitions (lsp/*.lua) on the runtimepath.
 
+-- Merge blink's completion capabilities into every server config.
+vim.lsp.config("*", {
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
+})
+
+-- Enable the servers you have installed on PATH via Nix.
+-- Add more here as you install them (names match nvim-lspconfig configs).
+vim.lsp.enable({
+	"lua_ls",
+	"gopls",
+	"nixd",
+})
+
+vim.lsp.config("nixd", {
+	settings = {
+		nixd = {
+			nixpkgs = {
+				-- Used for `pkgs.*` completion.
+				expr = "import <nixpkgs> { }",
+			},
+			options = {
+				-- Enables completion/hover for NixOS module options.
+				nixos = {
+					expr = "(import <nixpkgs/nixos> { }).options",
+				},
+			},
+			formatting = {
+				command = { "nixfmt" }, -- matches nixfmt-rfc-style; use { "alejandra" } if you chose that
+			},
+		},
+	},
+})
+
+-- Diagnostic display: gutter signs, inline virtual text, and rounded floats.
 local diagnostic_signs = {
-	Error = " ",
-	Warn = " ",
-	Hint = "",
-	Info = "",
+	Error = " ",
+	Warn = " ",
+	Hint = "",
+	Info = "",
 }
 
 vim.diagnostic.config({
@@ -22,7 +59,7 @@ vim.diagnostic.config({
 	severity_sort = true,
 	float = {
 		border = "rounded",
-		source = "always",
+		source = true, -- 0.11+ API: boolean/"if_many" ("always" is deprecated)
 		header = "",
 		prefix = "",
 		focusable = false,
@@ -30,6 +67,7 @@ vim.diagnostic.config({
 	},
 })
 
+-- Give all LSP hover/signature floating windows a rounded border by default.
 do
 	local original = vim.lsp.util.open_floating_preview
 	function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
@@ -39,6 +77,7 @@ do
 	end
 end
 
+-- Buffer-local keymaps once a server attaches.
 local function lsp_on_attach(ev)
 	local client = vim.lsp.get_client_by_id(ev.data.client_id)
 	if not client then
@@ -52,49 +91,30 @@ local function lsp_on_attach(ev)
 	end
 
 	nmap("<leader>gd", function()
-		require("fzf-lua").lsp_definitions({ jump_to_single_result = true })
+		require("fzf-lua").lsp_definitions({ jump1 = true })
 	end, "Go to Definition")
-
-	nmap("<leader>gD", vim.lsp.buf.definition, "Definition")
 
 	nmap("<leader>gS", function()
 		vim.cmd("vsplit")
 		vim.lsp.buf.definition()
 	end, "Definition in Vertical Split")
 
-	nmap("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 	nmap("<leader>rn", vim.lsp.buf.rename, "Rename Symbol")
-
-	nmap("<leader>D", function()
-		vim.diagnostic.open_float({ scope = "line" })
-	end, "Line Diagnostics")
-	nmap("<leader>d", function()
-		vim.diagnostic.open_float({ scope = "cursor" })
-	end, "Cursor Diagnostics")
-	nmap("<leader>nd", function()
-		vim.diagnostic.jump({ count = 1 })
-	end, "Next Diagnostic")
-	nmap("<leader>pd", function()
-		vim.diagnostic.jump({ count = -1 })
-	end, "Previous Diagnostic")
 
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
 
-	nmap("<leader>fd", function()
-		require("fzf-lua").lsp_definitions({ jump_to_single_result = true })
-	end, "Find Definitions")
 	nmap("<leader>fr", function()
 		require("fzf-lua").lsp_references()
 	end, "Find References")
+
 	nmap("<leader>ft", function()
 		require("fzf-lua").lsp_typedefs()
 	end, "Find Type Definitions")
+
 	nmap("<leader>fs", function()
 		require("fzf-lua").lsp_document_symbols()
 	end, "Find Document Symbols")
-	nmap("<leader>fw", function()
-		require("fzf-lua").lsp_workspace_symbols()
-	end, "Find Workspace Symbols")
+
 	nmap("<leader>fi", function()
 		require("fzf-lua").lsp_implementations()
 	end, "Find Implementations")
@@ -118,126 +138,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = lsp_on_attach,
 })
 
-vim.keymap.set("n", "<leader>q", function()
+-- Global (not buffer-local) diagnostic keymaps. Diagnostics work without an LSP,
+-- so these live here rather than in LspAttach.
+vim.keymap.set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+vim.keymap.set("n", "<leader>dn", function()
+	vim.diagnostic.jump({ count = 1 })
+end, { desc = "Next Diagnostic" })
+vim.keymap.set("n", "<leader>dp", function()
+	vim.diagnostic.jump({ count = -1 })
+end, { desc = "Previous Diagnostic" })
+vim.keymap.set("n", "<leader>dq", function()
 	vim.diagnostic.setloclist({ open = true })
-end, { desc = "Open Diagnostic List" })
-vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float, { desc = "Show Line Diagnostics" })
-
-require("blink.cmp").setup({
-	keymap = {
-		preset = "none",
-		["<C-Space>"] = { "show", "hide" },
-		["<CR>"] = { "accept", "fallback" },
-		["<C-j>"] = { "select_next", "fallback" },
-		["<C-k>"] = { "select_prev", "fallback" },
-		["<Tab>"] = { "snippet_forward", "fallback" },
-		["<S-Tab>"] = { "snippet_backward", "fallback" },
-	},
-	appearance = { nerd_font_variant = "mono" },
-	completion = { menu = { auto_show = true } },
-	sources = { default = { "lsp", "path", "buffer", "snippets" } },
-	snippets = {
-		expand = function(snippet)
-			require("luasnip").lsp_expand(snippet)
-		end,
-	},
-	fuzzy = {
-		implementation = "prefer_rust",
-		prebuilt_binaries = { download = true },
-	},
-})
-
-vim.lsp.config["*"] = {
-	capabilities = require("blink.cmp").get_lsp_capabilities(),
-}
-
-vim.lsp.config("lua_ls", {
-	settings = {
-		Lua = {
-			diagnostics = { globals = { "vim" } },
-			telemetry = { enable = false },
-		},
-	},
-})
-vim.lsp.config("pyright", {})
-vim.lsp.config("bashls", {})
-vim.lsp.config("ts_ls", {})
-vim.lsp.config("gopls", {})
-vim.lsp.config("clangd", {})
-
-do
-	local luacheck = require("efmls-configs.linters.luacheck")
-	local stylua = require("efmls-configs.formatters.stylua")
-
-	local flake8 = require("efmls-configs.linters.flake8")
-	local black = require("efmls-configs.formatters.black")
-
-	local prettier_d = require("efmls-configs.formatters.prettier_d")
-	local eslint_d = require("efmls-configs.linters.eslint_d")
-
-	local fixjson = require("efmls-configs.formatters.fixjson")
-
-	local shellcheck = require("efmls-configs.linters.shellcheck")
-	local shfmt = require("efmls-configs.formatters.shfmt")
-
-	local cpplint = require("efmls-configs.linters.cpplint")
-	local clangfmt = require("efmls-configs.formatters.clang_format")
-
-	local go_revive = require("efmls-configs.linters.go_revive")
-	local gofumpt = require("efmls-configs.formatters.gofumpt")
-
-	vim.lsp.config("efm", {
-		filetypes = {
-			"c",
-			"cpp",
-			"css",
-			"go",
-			"html",
-			"javascript",
-			"javascriptreact",
-			"json",
-			"jsonc",
-			"lua",
-			"markdown",
-			"python",
-			"sh",
-			"typescript",
-			"typescriptreact",
-			"vue",
-			"svelte",
-		},
-		init_options = { documentFormatting = true },
-		settings = {
-			languages = {
-				c = { clangfmt, cpplint },
-				go = { gofumpt, go_revive },
-				cpp = { clangfmt, cpplint },
-				css = { prettier_d },
-				html = { prettier_d },
-				javascript = { eslint_d, prettier_d },
-				javascriptreact = { eslint_d, prettier_d },
-				json = { eslint_d, fixjson },
-				jsonc = { eslint_d, fixjson },
-				lua = { luacheck, stylua },
-				markdown = { prettier_d },
-				python = { flake8, black },
-				sh = { shellcheck, shfmt },
-				typescript = { eslint_d, prettier_d },
-				typescriptreact = { eslint_d, prettier_d },
-				vue = { eslint_d, prettier_d },
-				svelte = { eslint_d, prettier_d },
-			},
-		},
-	})
-end
-
-vim.lsp.enable({
-	"lua_ls",
-	"pyright",
-	"bashls",
-	"ts_ls",
-	"gopls",
-	"clangd",
-	"efm",
-})
-
+end, { desc = "Diagnostic List" })

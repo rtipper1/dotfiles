@@ -1,49 +1,27 @@
-local treesitter = require("nvim-treesitter")
-treesitter.setup({})
+-- nvim-treesitter `main` branch API (Neovim 0.12+).
+-- Parsers install asynchronously; highlighting is turned on per-buffer via
+-- vim.treesitter.start() so it also applies once a parser finishes installing.
+local ts = require("nvim-treesitter")
 
-local ensure_installed = {
+-- Parsers to keep installed/updated. Add languages you use here.
+ts.install({
+	"lua",
 	"vim",
 	"vimdoc",
-	"rust",
-	"c",
-	"cpp",
-	"go",
-	"html",
-	"css",
-	"javascript",
-	"json",
-	"lua",
-	"markdown",
-	"python",
-	"typescript",
-	"vue",
-	"svelte",
+	"query",
 	"bash",
-	"lua",
+	"markdown",
+	"markdown_inline",
+	"go",
 	"python",
-}
+})
 
-local config = require("nvim-treesitter.config")
-local already_installed = config.get_installed()
-local parsers_to_install = {}
-
-for _, parser in ipairs(ensure_installed) do
-	if not vim.tbl_contains(already_installed, parser) then
-		table.insert(parsers_to_install, parser)
-	end
-end
-
-if #parsers_to_install > 0 then
-	treesitter.install(parsers_to_install)
-end
-
-local group = vim.api.nvim_create_augroup("TreeSitterConfig", { clear = true })
+-- Enable treesitter highlighting (and its indent expr) for any buffer whose
+-- filetype has a parser available. pcall guards filetypes without a parser.
 vim.api.nvim_create_autocmd("FileType", {
-	group = group,
 	callback = function(args)
-		if vim.list_contains(treesitter.get_installed(), vim.treesitter.language.get_lang(args.match)) then
-			vim.treesitter.start(args.buf)
+		if pcall(vim.treesitter.start, args.buf) then
+			vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 		end
 	end,
 })
-
