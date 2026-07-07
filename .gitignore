@@ -8,3 +8,6 @@
 
 # Ignore nvim theme from omarchy symlink
 nvim/.config/nvim/lua/plugins/theme.lua
+
+# tmux plugins (cloned + generated files, not tracked)
+tmux/.config/tmux/plugins/

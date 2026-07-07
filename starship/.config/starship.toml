@@ -1,0 +1,84 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$c\
+$golang\
+$python\
+$docker_context\
+$character"""
+
+palette = "gruvbox_material"
+
+[palettes.gruvbox_material]
+fg         = "#D4BE98"
+bg0        = "#282828"
+
+red        = "#EA6962"
+orange     = "#E78A4E"
+yellow     = "#D8A657"
+green      = "#A9B665"
+aqua       = "#89B482"
+blue       = "#7DAEA3"
+purple     = "#D3869B"
+grey       = "#928374"
+
+# ───────────────── DIRECTORY ─────────────────
+
+[directory]
+style = "fg:aqua"
+format = "[$path]($style) "
+truncation_length = 10
+truncation_symbol = "…/"
+
+# ───────────────── GIT ─────────────────
+
+# branch icon = red
+# branch name = primary blue
+
+[git_branch]
+symbol = " "
+style = "fg:red"
+format = "[[](fg:red) $branch]($style) "
+
+[git_status]
+style = "fg:red"
+format = '([$all_status]($style) )'
+modified = "●"
+stashed = ""
+staged = ""
+renamed = ""
+deleted = ""
+# ───────────────── LANGUAGES ─────────────────
+
+
+[c]
+symbol = ""
+style = "fg:blue"
+format = "[$symbol]($style) "
+
+[golang]
+symbol = ""
+style = "fg:aqua"
+format = "[$symbol]($style) "
+
+[python]
+symbol = ""
+style = "fg:yellow"
+format = "[$symbol]($style) "
+
+# ───────────────── CONTAINERS / ENVS ─────────────────
+
+[docker_context]
+symbol = ""
+style = "fg:blue"
+format = "[$symbol]($style) "
+
+# ───────────────── PROMPT ─────────────────
+
+[character]
+success_symbol = "[❯](bold fg:aqua)"
+error_symbol = "[❯](bold fg:red)"
+vimcmd_symbol = "[❮](bold fg:yellow)"
