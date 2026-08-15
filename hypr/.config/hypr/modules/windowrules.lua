@@ -71,3 +71,15 @@ hl.window_rule({
     match = { class = "com.mitchellh.ghostty" },
     opacity = 0.75,
 })
+
+hl.window_rule({
+    name = "floating-terminal",
+    match = {
+        class = "^com\\.ghostty\\.floating$",
+    },
+    float = true,
+    size = { 900, 600 },
+    center = true,
+    opacity = 0.75,
+})
+
