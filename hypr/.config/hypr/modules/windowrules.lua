@@ -2,6 +2,8 @@
 ---- WINDOW RULES ----
 ----------------------
 
+local apps = require("modules/apps")
+
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
 -- uncomment all if you wish to use that.
@@ -66,20 +68,24 @@ hl.window_rule({
     float = true,
 })
 
--- Apply 75% opacity to Ghostty
-hl.window_rule({
-    match = { class = "com.mitchellh.ghostty" },
-    opacity = 0.75,
-})
-
+-- Floating Ghostty only: float/size/center. Transparency comes from
+-- Ghostty's --background-opacity on the launch bind, not a global opacity rule.
 hl.window_rule({
     name = "floating-terminal",
     match = {
-        class = "^com\\.ghostty\\.floating$",
+        class = "^" .. apps.classes.floatingTerminal:gsub("%.", "\\.") .. "$",
     },
     float = true,
     size = { 900, 600 },
     center = true,
-    opacity = 0.75,
 })
 
+-- Browser always on workspace 1, fullscreen
+hl.window_rule({
+    name = "browser-workspace",
+    match = {
+        class = "^" .. apps.classes.browser:gsub("%.", "\\.") .. "$",
+    },
+    workspace = "1",
+    fullscreen = true,
+})

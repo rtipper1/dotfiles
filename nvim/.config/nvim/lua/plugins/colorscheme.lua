@@ -5,7 +5,9 @@
 -- reapply them on the ColorScheme event, which fires every time a scheme loads.
 
 vim.g.everforest_background = "medium" -- "soft" | "medium" | "hard"
--- Everforest's own transparency; 2 also clears sign/number column backgrounds.
+-- Clear editor backgrounds so Ghostty's opacity shows through. Regular Ghostty
+-- windows are opaque (solid look); only the floating terminal uses
+-- --background-opacity, so transparency only appears there.
 -- Note: this links NormalFloat -> Normal (transparent), which we override below.
 vim.g.everforest_transparent_background = 2
 
@@ -17,13 +19,11 @@ local palette = {
 }
 
 local function apply_highlights()
-	-- Keep the main editor transparent (shows the terminal background)...
+	-- Transparent editor chrome: opaque Ghostty -> solid; floating Ghostty -> see-through.
 	for _, group in ipairs({ "Normal", "EndOfBuffer", "SignColumn" }) do
 		vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
 	end
-	-- ...but give floating windows a SOLID background for readability. This
-	-- covers LSP hover, diagnostic floats, and which-key (they all use these
-	-- groups, directly or via links).
+	-- Solid popup backgrounds for readability (LSP hover, diagnostics, which-key).
 	vim.api.nvim_set_hl(0, "NormalFloat", { fg = palette.fg, bg = palette.float_bg })
 	vim.api.nvim_set_hl(0, "FloatBorder", { fg = palette.grey, bg = palette.float_bg })
 end
