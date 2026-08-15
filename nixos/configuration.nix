@@ -22,6 +22,10 @@
     HYPRCURSOR_SIZE = "16";
   };
 
+  environment.variables = {
+    XDG_DOWNLOAD_DIR = "$HOME/downloads";
+  };
+
   programs.dconf = {
     enable = true;
     profiles.user.databases = [
