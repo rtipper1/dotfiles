@@ -64,8 +64,6 @@
     xwayland.enable = true;
   };
 
-  programs.firefox.enable = true;
-
   services.greetd = {
     enable = true;
     settings = {
@@ -107,6 +105,7 @@
     starship
     stow
     fzf
+    brave
     cursor-cli
     hyprpaper
     bibata-cursors

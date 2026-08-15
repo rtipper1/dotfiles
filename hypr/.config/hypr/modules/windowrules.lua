@@ -87,5 +87,4 @@ hl.window_rule({
         class = "^" .. apps.classes.browser:gsub("%.", "\\.") .. "$",
     },
     workspace = "1",
-    fullscreen = true,
 })

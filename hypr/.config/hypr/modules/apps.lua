@@ -8,7 +8,7 @@ return {
     terminal    = "ghostty",
     fileManager = "dolphin",
     menu        = "hyprlauncher", -- Not added yet
-    browser     = "firefox",
+    browser     = "brave",
     wallpaper   = "hyprpaper",
     bar         = "waybar", -- Not added yet
 
@@ -17,7 +17,7 @@ return {
 
     -- Window classes (for matching in window rules; may differ from binary names)
     classes = {
-        browser          = "firefox",
+        browser          = "brave",
         floatingTerminal = "com.ghostty.floating",
     },
 }
