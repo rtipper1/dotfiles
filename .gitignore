@@ -1,13 +1,8 @@
-# Omarchy-managed state (do not track)
-.config/omarchy/
-**/.config/omarchy/
-
-# If you ever have a repo-local copy or symlink of current theme targets
-**/omarchy/current/
-**/.config/omarchy/current/
-
 # Ignore nvim theme from omarchy symlink
 nvim/.config/nvim/lua/plugins/theme.lua
 
 # tmux plugins (cloned + generated files, not tracked)
 tmux/.config/tmux/plugins/
+
+# Ignore monitor settings
+hypr/.config/hypr/modules/monitors.lua
