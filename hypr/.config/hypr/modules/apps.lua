@@ -17,7 +17,7 @@ return {
 
     -- Window classes (for matching in window rules; may differ from binary names)
     classes = {
-        browser          = "brave",
+        browser          = "brave-browser",
         floatingTerminal = "com.ghostty.floating",
     },
 }

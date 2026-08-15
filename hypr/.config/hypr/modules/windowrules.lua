@@ -68,8 +68,8 @@ hl.window_rule({
     float = true,
 })
 
--- Floating Ghostty only: float/size/center. Transparency comes from
--- Ghostty's --background-opacity on the launch bind, not a global opacity rule.
+-- Floating Ghostty only: float/size/center, plus the old bordered/rounded look.
+-- Transparency comes from Ghostty's --background-opacity on the launch bind.
 hl.window_rule({
     name = "floating-terminal",
     match = {
@@ -78,6 +78,10 @@ hl.window_rule({
     float = true,
     size = { 900, 600 },
     center = true,
+    border_size = 2,
+    rounding = 15,
+    border_color = 
+        { colors = {"rgba(4F5B58aa)", "rgba(495156aa)"}, angle = 45 },
 })
 
 -- Browser always on workspace 1, fullscreen
