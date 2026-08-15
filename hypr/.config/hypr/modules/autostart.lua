@@ -14,7 +14,7 @@
 -- end)
 
 hl.on("hyprland.start", function ()
-    hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
+    hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 16")
     hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("hyprlauncher -d")

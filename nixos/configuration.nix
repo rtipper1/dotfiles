@@ -17,9 +17,9 @@
   # Bibata cursor for X11/XWayland apps and GTK (Hyprland falls back to XCursor).
   environment.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";
-    XCURSOR_SIZE = "12";
+    XCURSOR_SIZE = "16";
     HYPRCURSOR_THEME = "Bibata-Modern-Ice";
-    HYPRCURSOR_SIZE = "12";
+    HYPRCURSOR_SIZE = "16";
   };
 
   programs.dconf = {
@@ -28,7 +28,7 @@
       {
         settings."org/gnome/desktop/interface" = {
           cursor-theme = "Bibata-Modern-Ice";
-          cursor-size = lib.gvariant.mkInt32 24;
+          cursor-size = lib.gvariant.mkInt32 16;
         };
       }
     ];
@@ -66,7 +66,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --cmd start-hyprland --user-menu";
+        command = "${pkgs.tuigreet}/bin/tuigreet --cmd start-hyprland";
         user = "greeter";
       };
     };
