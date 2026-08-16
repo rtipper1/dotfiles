@@ -4,6 +4,8 @@ import QtQuick
 import QtQuick.Layouts
 
 RowLayout {
+	required property var theme
+
 	Repeater {
 		model: ScriptModel {
 			// Hyprland only tracks focused/occupied workspaces; skip named/special (id < 1).
@@ -13,7 +15,7 @@ RowLayout {
 		Text {
 			required property var modelData
 			text: modelData.id
-			color: modelData.focused ? "#D3C6AA" : "#9DA9A0"
+			color: modelData.focused ? theme.foreground : theme.muted
 			font { pixelSize: 12; bold: true }
 
 			MouseArea {

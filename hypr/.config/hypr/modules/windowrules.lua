@@ -59,6 +59,12 @@ hl.window_rule({
 -- })
 -- overlayLayerRule:set_enabled(false)
 
+hl.layer_rule({
+    name  = "launcher-blur",
+    match = { namespace = "^quickshell-launcher$" },
+    blur = true,
+})
+
 -- Hyprland-run windowrule
 hl.window_rule({
     name  = "move-hyprland-run",

@@ -1,0 +1,22 @@
+{
+  "webapps": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/dashboard",
+      "iconUrl": "https://cdn.jsdelivr.net/gh/selfhst/icons/png/github-dark.png",
+      "id": "webapp-github"
+    },
+    {
+      "name": "Google Drive",
+      "url": "https://drive.google.com/drive/home?ths=true",
+      "iconUrl": "https://cdn.jsdelivr.net/gh/selfhst/icons/png/google-drive.png",
+      "id": "webapp-google-drive"
+    },
+    {
+      "name": "Sheets",
+      "url": "https://docs.google.com/spreadsheets/u/0/",
+      "iconUrl": "https://www.gstatic.com/images/branding/productlogos/sheets_2026/v2/web-48dp/logo_sheets_2026_color_2x_web_48dp.png",
+      "id": "webapp-sheets"
+    }
+  ]
+}

@@ -4,6 +4,10 @@ import QtQuick
 import QtQuick.Layouts
 
 Scope {
+	id: root
+
+	required property var theme
+
 	Variants {
 		model: Quickshell.screens;
 
@@ -18,18 +22,20 @@ Scope {
 			}
 
 			implicitHeight: 30
-			color: "#1E2326"
+			color: root.theme.background
 
 			RowLayout {
 				anchors.fill: parent
 				anchors.margins: 8
 
-				WorkspaceWidget {}
+				WorkspaceWidget {
+					theme: root.theme
+				}
 			}
 			
 			ClockWidget {
 				anchors.centerIn: parent
-				color: "#D3C6AA"
+				color: root.theme.foreground
 			}
 		}	
 	}

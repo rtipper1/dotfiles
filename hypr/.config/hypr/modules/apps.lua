@@ -7,10 +7,9 @@
 return {
     terminal    = "ghostty",
     fileManager = "dolphin",
-    menu        = "hyprlauncher", -- Not added yet
+    menu        = "qs ipc call launcher toggle",
     browser     = "brave",
     wallpaper   = "hyprpaper",
-    bar         = "waybar", -- Not added yet
 
     -- Launch command for the floating Ghostty scratch terminal
     -- Override global fullscreen=true so the float rule can size/center it

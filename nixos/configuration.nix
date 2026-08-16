@@ -3,6 +3,14 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, ... }:
+let
+  webapp = pkgs.buildGoModule {
+    pname = "webapp";
+    version = "1.0.0";
+    src = ../webapp;
+    vendorHash = null;
+  };
+in
 
 {
   imports =
@@ -114,8 +122,9 @@
     cursor-cli
     hyprpaper
     bibata-cursors
-    xclip
     go
+    webapp
+    nodejs
     gcc
     gopls
   ];
