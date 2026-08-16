@@ -4,7 +4,7 @@
 -- one-off nvim_set_hl calls (they'd be clobbered by :colorscheme). Instead we
 -- reapply them on the ColorScheme event, which fires every time a scheme loads.
 
-vim.g.everforest_background = "medium" -- "soft" | "medium" | "hard"
+vim.g.everforest_background = "soft" -- "soft" | "medium" | "hard"
 -- Clear editor backgrounds so Ghostty's opacity shows through. Regular Ghostty
 -- windows are opaque (solid look); only the floating terminal uses
 -- --background-opacity, so transparency only appears there.
