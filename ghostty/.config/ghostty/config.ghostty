@@ -7,13 +7,10 @@ font-thicken=true
 font-thicken-strength = 1
 adjust-cell-height = 1
 
-background-opacity = 0.65
-background-blur=true
-
-fullscreen = false
+fullscreen = true
 
 window-padding-x = 10
-window-padding-y = 5
+window-padding-y = 0
 
 copy-on-select = true
 

@@ -68,12 +68,6 @@ hl.window_rule({
     float = true,
 })
 
--- Apply opacity to all Ghostty windows (composes with Ghostty background-opacity)
-hl.window_rule({
-    match = { class = "com.mitchellh.ghostty" },
-    opacity = 0.75,
-})
-
 -- Floating Ghostty: float/size/center, plus bordered/rounded look
 hl.window_rule({
     name = "floating-terminal",
@@ -88,6 +82,7 @@ hl.window_rule({
     rounding = 15,
     border_color =
         { colors = {"rgba(4F5B58aa)", "rgba(495156aa)"}, angle = 45 },
+    suppress_event = "fullscreen",
 })
 
 -- Browser always on workspace 1, fullscreen
