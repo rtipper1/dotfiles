@@ -13,7 +13,7 @@ return {
     bar         = "waybar", -- Not added yet
 
     -- Launch command for the floating Ghostty scratch terminal
-    floatingTerminal = "ghostty --class=com.ghostty.floating --background-opacity=0.65",
+    floatingTerminal = "ghostty --class=com.ghostty.floating",
 
     -- Window classes (for matching in window rules; may differ from binary names)
     classes = {

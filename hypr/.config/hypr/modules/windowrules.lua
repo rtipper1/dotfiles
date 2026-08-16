@@ -68,8 +68,13 @@ hl.window_rule({
     float = true,
 })
 
--- Floating Ghostty only: float/size/center, plus the old bordered/rounded look.
--- Transparency comes from Ghostty's --background-opacity on the launch bind.
+-- Apply opacity to all Ghostty windows (composes with Ghostty background-opacity)
+hl.window_rule({
+    match = { class = "com.mitchellh.ghostty" },
+    opacity = 0.75,
+})
+
+-- Floating Ghostty: float/size/center, plus bordered/rounded look
 hl.window_rule({
     name = "floating-terminal",
     match = {
@@ -78,9 +83,10 @@ hl.window_rule({
     float = true,
     size = { 900, 600 },
     center = true,
+    opacity = 0.75,
     border_size = 2,
     rounding = 15,
-    border_color = 
+    border_color =
         { colors = {"rgba(4F5B58aa)", "rgba(495156aa)"}, angle = 45 },
 })
 
