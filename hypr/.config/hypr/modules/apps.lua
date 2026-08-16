@@ -5,7 +5,8 @@
 -- Shared app definitions for binds, autostart, and window rules.
 
 return {
-    terminal    = "ghostty",
+    -- Override Ghostty's global fullscreen=true for tiled launches
+    terminal    = "ghostty --fullscreen=false",
     fileManager = "dolphin",
     menu        = "qs ipc call launcher toggle",
     browser     = "brave",
