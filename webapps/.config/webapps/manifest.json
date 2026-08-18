@@ -1,10 +1,28 @@
 {
   "webapps": [
     {
+      "name": "Calendar",
+      "url": "https://calendar.google.com/calendar/u/0/r",
+      "iconUrl": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-calendar.png",
+      "id": "webapp-calendar"
+    },
+    {
+      "name": "Gemini",
+      "url": "https://gemini.google.com/app",
+      "iconUrl": "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-png@latest/light/gemini-color.png",
+      "id": "webapp-gemini"
+    },
+    {
       "name": "GitHub",
       "url": "https://github.com/dashboard",
       "iconUrl": "https://cdn.jsdelivr.net/gh/selfhst/icons/png/github-dark.png",
       "id": "webapp-github"
+    },
+    {
+      "name": "Gmail",
+      "url": "https://mail.google.com/mail/u/0/#inbox",
+      "iconUrl": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/gmail.png",
+      "id": "webapp-gmail"
     },
     {
       "name": "Google Drive",
@@ -17,6 +35,18 @@
       "url": "https://docs.google.com/spreadsheets/u/0/",
       "iconUrl": "https://www.gstatic.com/images/branding/productlogos/sheets_2026/v2/web-48dp/logo_sheets_2026_color_2x_web_48dp.png",
       "id": "webapp-sheets"
+    },
+    {
+      "name": "Spotify",
+      "url": "https://open.spotify.com/?flow_ctx=5fce5698-d8b5-48af-82a5-58246ec53c87%3A1786948220",
+      "iconUrl": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/spotify.png",
+      "id": "webapp-spotify"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com/",
+      "iconUrl": "https://cdn.jsdelivr.net/gh/selfhst/icons/png/youtube.png",
+      "id": "webapp-youtube"
     }
   ]
 }
