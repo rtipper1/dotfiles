@@ -9,3 +9,5 @@ hl.env("XCURSOR_THEME", "Bibata-Modern-Ice")
 
 hl.env("HYPRCURSOR_SIZE", "16")
 hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Ice")
+
+hl.env("BROWSER", "google-chrome-stable")

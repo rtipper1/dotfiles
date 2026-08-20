@@ -16,7 +16,10 @@ import (
 	"strings"
 )
 
-const managedMarker = "X-Webapp-Managed=true"
+const (
+	managedMarker = "X-Webapp-Managed=true"
+	webappBrowser = "google-chrome-stable"
+)
 
 type environment struct {
 	configHome string
@@ -279,13 +282,13 @@ func desktopEntry(item webapp, env environment) string {
 	return fmt.Sprintf(`[Desktop Entry]
 Version=1.0
 Name=%s
-Exec=brave --app=%s
+Exec=%s --app=%s
 Terminal=false
 Type=Application
 Icon=%s
 StartupNotify=true
 %s
-`, item.Name, item.URL, iconPathForDesktop(item, env), managedMarker)
+`, item.Name, webappBrowser, item.URL, iconPathForDesktop(item, env), managedMarker)
 }
 
 func prompt(reader *bufio.Reader, output io.Writer, label string) (string, error) {

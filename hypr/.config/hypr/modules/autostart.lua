@@ -19,5 +19,5 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 16")
     hl.exec_cmd(apps.wallpaper)
     -- Sync must not prevent Quickshell from starting; existing entries remain usable on failure.
-	hl.exec_cmd("webapp sync; qs")
+	hl.exec_cmd("$HOME/.local/bin/webapp sync; qs")
 end)

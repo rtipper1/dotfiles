@@ -9,7 +9,7 @@ return {
     terminal    = "ghostty --fullscreen=false",
     fileManager = "dolphin",
     menu        = "qs ipc call launcher toggle",
-    browser     = "brave",
+    browser     = "google-chrome-stable",
     wallpaper   = "hyprpaper",
 
     -- Launch command for the floating Ghostty scratch terminal
@@ -18,7 +18,7 @@ return {
 
     -- Window classes (for matching in window rules; may differ from binary names)
     classes = {
-        browser          = "brave-browser",
+        browser          = "Google-chrome",
         floatingTerminal = "com.ghostty.floating",
     },
 }

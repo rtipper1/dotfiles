@@ -50,8 +50,8 @@ func TestInstallCreatesManifestIconAndDesktopEntry(t *testing.T) {
 	if err != nil {
 		t.Fatalf("read desktop entry: %v", err)
 	}
-	if !strings.Contains(string(entry), "Exec=brave --app=https://github.com") {
-		t.Fatalf("desktop entry does not launch Brave app mode: %s", entry)
+	if !strings.Contains(string(entry), "Exec=google-chrome-stable --app=https://github.com") {
+		t.Fatalf("desktop entry does not launch Chrome app mode: %s", entry)
 	}
 	if !strings.Contains(string(entry), "X-Webapp-Managed=true") {
 		t.Fatalf("desktop entry lacks management marker: %s", entry)

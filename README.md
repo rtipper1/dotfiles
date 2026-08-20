@@ -12,7 +12,9 @@ your home directory. For example, `nvim/.config/nvim/init.lua` gets symlinked to
 - `nvim` – Neovim config
 - `starship` – Starship prompt config
 - `tmux` – tmux config
-- `webapps` – Declarative Brave webapp manifest
+- `webapps` – Declarative Chrome webapp manifest
+- `xdg` – XDG defaults (default browser)
+- `launcher` – Hidden desktop entries (launcher clutter)
 
 ## Install
 
