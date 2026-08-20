@@ -5,8 +5,7 @@ vim.pack.add({
 	"https://github.com/ibhagwan/fzf-lua",
 	-- Treesitter's rewrite lives on the `main` branch (recommended on 0.12+).
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
-	-- LSP: server definitions consumed by vim.lsp.enable(). On NixOS the server
-	-- binaries themselves are installed via Nix, not mason.
+	-- LSP: server definitions consumed by vim.lsp.enable().
 	"https://github.com/neovim/nvim-lspconfig",
 	-- Completion: pin to a 1.x release tag so blink pulls its prebuilt binary.
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1") },	

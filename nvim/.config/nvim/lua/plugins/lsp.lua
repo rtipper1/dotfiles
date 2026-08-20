@@ -1,6 +1,5 @@
 -- LSP setup for Neovim 0.12's native vim.lsp API.
--- Server binaries are installed via Nix (see notes below), NOT mason, because
--- mason ships generic-linux prebuilt binaries that can't run on NixOS.
+-- Server binaries must be on PATH (e.g. lua-language-server, gopls).
 -- nvim-lspconfig ships the server definitions (lsp/*.lua) on the runtimepath.
 
 -- Merge blink's completion capabilities into every server config.
@@ -8,32 +7,10 @@ vim.lsp.config("*", {
 	capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
 
--- Enable the servers you have installed on PATH via Nix.
--- Add more here as you install them (names match nvim-lspconfig configs).
+-- Enable servers you have installed on PATH (names match nvim-lspconfig configs).
 vim.lsp.enable({
 	"lua_ls",
 	"gopls",
-	"nixd",
-})
-
-vim.lsp.config("nixd", {
-	settings = {
-		nixd = {
-			nixpkgs = {
-				-- Used for `pkgs.*` completion.
-				expr = "import <nixpkgs> { }",
-			},
-			options = {
-				-- Enables completion/hover for NixOS module options.
-				nixos = {
-					expr = "(import <nixpkgs/nixos> { }).options",
-				},
-			},
-			formatting = {
-				command = { "nixfmt" }, -- matches nixfmt-rfc-style; use { "alejandra" } if you chose that
-			},
-		},
-	},
 })
 
 -- Diagnostic display: gutter signs, inline virtual text, and rounded floats.

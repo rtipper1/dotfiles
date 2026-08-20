@@ -1,6 +1,5 @@
 -- nvim-treesitter `main` branch API (Neovim 0.12+).
--- Parsers install asynchronously; highlighting is turned on per-buffer via
--- vim.treesitter.start() so it also applies once a parser finishes installing.
+-- Requires tree-sitter-cli on PATH to compile parsers (Arch: tree-sitter-cli).
 local ts = require("nvim-treesitter")
 
 -- Parsers to keep installed/updated. Add languages you use here.
@@ -16,12 +15,28 @@ ts.install({
 	"python",
 })
 
--- Enable treesitter highlighting (and its indent expr) for any buffer whose
--- filetype has a parser available. pcall guards filetypes without a parser.
+local function enable_treesitter(bufnr)
+	if pcall(vim.treesitter.start, bufnr) then
+		vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	end
+end
+
+-- Enable treesitter highlighting for buffers whose filetype has a parser.
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function(args)
-		if pcall(vim.treesitter.start, args.buf) then
-			vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		enable_treesitter(args.buf)
+	end,
+})
+
+-- Parsers install asynchronously on startup; re-apply highlighting to open
+-- buffers once installation finishes.
+vim.api.nvim_create_autocmd("User", {
+	pattern = "TSUpdate",
+	callback = function()
+		for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+			if vim.api.nvim_buf_is_loaded(bufnr) and vim.bo[bufnr].filetype ~= "" then
+				enable_treesitter(bufnr)
+			end
 		end
 	end,
 })
