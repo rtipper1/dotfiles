@@ -21,9 +21,9 @@ export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 # ==========================================
 # 4. STANDARD ALIASES (Optional)
 # ==========================================
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ls="eza -la --icons=always"
+alias ll="eza -lh --icons=always"
+alias la="eza -lah --icons=always"
 
 # ==========================================
 # 5. STARSHIP INITIALIZATION
